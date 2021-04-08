@@ -13,13 +13,14 @@
     <div id="app"></div>
     <!-- <h1 id="header">Tyler</h1> -->
     <script type='text/babel'>
-
+        //component funcional sin estado
         function FriendsList (props) {
             return (
                 <ul>
                 {props.list.map((name) => (
                     <li key={name}>
-                      {name}  
+                      <span>{name}</span>
+                      <button onClick={() => props.onRemoveFriend(name)}>Remove</button>  
                     </li>
                 ))}
                 </ul>
@@ -34,11 +35,29 @@
                    friends: ['Rafael', 'Daniel', 'Elias']
                 }
             }
+            handleAddFriend () {
+
+            }
+
+            handleRemoveFriend (name) {
+                //this.state.friends = this.state.friends.filter((friend) => friend !== name)
+                this.setState((currentState) => {
+                    return {
+                        friends: currentState.friends.filter((friend) => friend !== name)
+                    }
+                })
+            }
+
             render() {
                 return (
-                <div id='container'>
-                    <FriendsList list={this.state.friends} />
-                </div>
+                    <div>
+                        <FriendsList 
+                        list={this.state.friends} 
+                        onRemoveFriend={this.handleRemoveFriend}
+                        setState={() => console.log('wuttt')}
+                        />
+                    </div>
+                
                 )    
             }
         }
