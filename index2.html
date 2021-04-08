@@ -14,10 +14,24 @@
     <!-- <h1 id="header">Tyler</h1> -->
     <script type='text/babel'>
 
+        function FriendsList (props) {
+            return (
+                <ul>
+                {props.list.map((name) => (
+                    <li key={name}>
+                      {name}  
+                    </li>
+                ))}
+                </ul>
+            )
+        }
+
         function App () {
+            const friends = ['Rafael', 'Daniel', 'Elias']
+
             return (
                 <div id='container'>
-                    Hello World    
+                    <FriendsList list={friends} />
                 </div>
             )
         }
