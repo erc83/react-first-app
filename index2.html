@@ -34,6 +34,11 @@
                 this.state = {
                    friends: ['Rafael', 'Daniel', 'Elias']
                 }
+
+                console.log('THISSSS', this)
+
+                this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
+
             }
             handleAddFriend () {
 
@@ -54,7 +59,7 @@
                         <FriendsList 
                         list={this.state.friends} 
                         onRemoveFriend={this.handleRemoveFriend}
-                        setState={() => console.log('wuttt')}
+                        //setState={() => console.log('wuttt')}
                         />
                     </div>
                 
