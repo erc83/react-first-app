@@ -25,8 +25,20 @@
                 </ul>
             )
         }
+        //component de clase
+        class App extends React.Component {
+            render() {
+                const friends = ['Rafael', 'Daniel', 'Elias']
 
-        function App () {
+                return (
+                <div id='container'>
+                    <FriendsList list={friends} />
+                </div>
+                )    
+            }
+        }
+        //component funcional
+        /*function App () {
             const friends = ['Rafael', 'Daniel', 'Elias']
 
             return (
@@ -34,7 +46,7 @@
                     <FriendsList list={friends} />
                 </div>
             )
-        }
+        }*/
 
         ReactDOM.render(
             <App />,
