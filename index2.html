@@ -27,12 +27,17 @@
         }
         //component de clase
         class App extends React.Component {
-            render() {
-                const friends = ['Rafael', 'Daniel', 'Elias']
+            constructor(props) {
+                super(props)
 
+                this.state = {
+                   friends: ['Rafael', 'Daniel', 'Elias']
+                }
+            }
+            render() {
                 return (
                 <div id='container'>
-                    <FriendsList list={friends} />
+                    <FriendsList list={this.state.friends} />
                 </div>
                 )    
             }
