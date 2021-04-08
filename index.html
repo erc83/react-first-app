@@ -7,42 +7,34 @@
     <title>First React app</title>
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src='https://unpkg.com/babel-standalone@6.26.0/babel.min.js'></script>
 </head>
 <body>
     <div id="app"></div>
     <!-- <h1 id="header">Tyler</h1> -->
-    <script>
+    <script type='text/babel'>
         const name = 'Eric'
         const handle = '@gmail.com'
 
         function NameComponent (props) {
-            return React.createElement(
-                'h1',
-                null,
-                props.name,
-            )
+            return <h1>{props.name}</h1>
         }
-        // const handleElement cambio a HandleComponent 
+         
         function HandleComponent (props) {
-            return React.createElement(
-                'h3',
-                null,
-                props.handle,
+            return <h3>{props.handle}</h3>
+        }
+
+        function App () {
+            return (
+                <div id='container'>
+                    <NameComponent name={name} />
+                    <HandleComponent handle={handle} />
+                </div>
             )
         }
-        
-        const wrapperElement = React.createElement(
-            'div',
-            { id: 'container'},
-            React.createElement(NameComponent, { name: 'Eric'}),
-            React.createElement(HandleComponent, { handle: '@gmail.com'}),
-            
-        )
-
-        console.log('wrapperElement', wrapperElement)
 
         ReactDOM.render(
-            wrapperElement,
+            <App />,
             document.getElementById('app')
         )
     </script>
