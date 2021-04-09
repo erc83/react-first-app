@@ -50,9 +50,18 @@
                 }
             }
             componentDidMount() {
-                const stropper = this.state.text + '...'
+                const stopper = this.state.text + '...'
 
-                window.setInterval(() => console.log('HERE') ,300)
+                window.setInterval(() => {
+                    this.state.text === stopper
+                    ? this.setState({text: 'Loading'})
+                    : this.setState((currentState) => { 
+                        return {
+                            text: currentState.text + '.'
+                        }
+                    })
+                }, 300)
+
             }
             render() {
                 return <p>{this.state.text}</p>
