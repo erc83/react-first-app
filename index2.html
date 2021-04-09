@@ -13,7 +13,23 @@
     <div id="app"></div>
     <!-- <h1 id="header">Tyler</h1> -->
     <script type='text/babel'>
-        //component funcional sin estado
+        function ActiveFriends (props) {
+            return (
+                <div>
+                    Active Friends
+                </div>
+            )
+        }
+
+        function InactiveFriends (props) {
+            return(
+                <div>
+                    Inactive Friends
+                </div>
+            )
+        }
+
+
         function FriendsList (props) {
             return (
                 <ul>
@@ -104,27 +120,13 @@
                                 Clear All
                             </button>
                         </div>
-
-                        <FriendsList 
-                        list={this.state.friends} 
-                        onRemoveFriend={this.handleRemoveFriend}
-                        //setState={() => console.log('wuttt')}
-                        />
+                        <ActiveFriends />
+                        <InactiveFriends />
                     </div>
                 
                 )    
             }
         }
-        //component funcional
-        /*function App () {
-            const friends = ['Rafael', 'Daniel', 'Elias']
-
-            return (
-                <div id='container'>
-                    <FriendsList list={friends} />
-                </div>
-            )
-        }*/
 
         ReactDOM.render(
             <App />,
