@@ -78,6 +78,7 @@
                 this.state = {
                    friends: [],
                    input: '',
+                   loading: true
                 }
                 this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
                 this.updateInput = this.updateInput.bind(this)
@@ -93,7 +94,10 @@
 
                 API.fetchFriends()
                     .then((friends) => {
-                        console.log(friends)
+                        this.setState({
+                            friends,
+                            loading: false
+                        })
                     })
             }
             //cuando en el dom hacemos una actualizacion
@@ -151,6 +155,10 @@
             }
             render() {
                 console.log('--render--')
+
+                if (this.state.loading === true) {
+                    return <h1>LOADING</h1>
+                }
 
                 return (
                     <div>
