@@ -49,6 +49,11 @@
                     text: 'Loading'
                 }
             }
+            componentDidMount() {
+                const stropper = this.state.text + '...'
+
+                window.setInterval(() => console.log('HERE') ,300)
+            }
             render() {
                 return <p>{this.state.text}</p>
             }
