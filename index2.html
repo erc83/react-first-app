@@ -17,10 +17,10 @@
         function FriendsList (props) {
             return (
                 <ul>
-                {props.list.map((name) => (
-                    <li key={name}>
-                      <span>{name}</span>
-                      <button onClick={() => props.onRemoveFriend(name)}>Remove</button>  
+                {props.list.map((friend) => (
+                    <li key={friend.name}>
+                      <span>{friend.name}</span>
+                      <button onClick={() => props.onRemoveFriend(friend.name)}>Remove</button>  
                     </li>
                 ))}
                 </ul>
@@ -32,7 +32,20 @@
                 super(props)
 
                 this.state = {
-                   friends: ['Rafael', 'Daniel', 'Elias'],
+                   friends: [
+                       {
+                           name: 'Eric',
+                           active: true,
+                       },
+                       {
+                            name: 'Rafael',
+                            active: true,
+                       },
+                       {
+                           name: 'Elias',
+                           active: false,
+                       }
+                   ],
                    input: '',
                 }
                 console.log('THISSSS', this)
@@ -43,7 +56,10 @@
             handleAddFriend() {
                 this.setState((currentState) => {
                     return{
-                        friends: currentState.friends.concat([this.state.input]),
+                        friends: currentState.friends.concat([{
+                            name: currentState.input,
+                            active: true,
+                        }]),
                         input: '',
                     }
                 })  
@@ -54,7 +70,7 @@
                 //this.state.friends = this.state.friends.filter((friend) => friend !== name)
                 this.setState((currentState) => {
                     return {
-                        friends: currentState.friends.filter((friend) => friend !== name)
+                        friends: currentState.friends.filter((friend) => friend.name !== name)
                     }
                 })
             }
@@ -81,6 +97,14 @@
                         onChange={this.updateInput}
                         />
                         <button onClick={this.handleAddFriend}>Submit</button>
+                        <div>
+                            <button onClick={() => this.setState({
+                                friends: []
+                            })}>
+                                Clear All
+                            </button>
+                        </div>
+
                         <FriendsList 
                         list={this.state.friends} 
                         onRemoveFriend={this.handleRemoveFriend}
