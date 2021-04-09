@@ -21,7 +21,7 @@
                     {props.list.map((friend) => (
                         <li key={friend.name}>
                         <span>{friend.name}</span>
-                        <button>Remove</button>  
+                        <button onClick={() => props.onRemoveFriend(friend.name)}>Remove</button>  
                         </li>
                     ))}
                 </ul>    
@@ -36,8 +36,7 @@
                     <ul>
                     {props.list.map((friend) => (
                         <li key={friend.name}>
-                        <span>{friend.name}</span>
-                        <button>Remove</button>  
+                        <span>{friend.name}</span> 
                         </li>
                     ))}
                 </ul>    
@@ -125,6 +124,7 @@
                         </div>
                         //listas diferentes basadas en la propiedad activa de cada uno
                         <ActiveFriends 
+                            onRemoveFriend={this.handleRemoveFriend}
                             list={this.state.friends.filter((friend) => friend.active === true)}
                         />
                         <InactiveFriends 
