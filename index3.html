@@ -29,7 +29,6 @@
                 </div>
             )
         }
-
         function InactiveFriends (props) {
             return(
                 <div>
@@ -45,12 +44,10 @@
                 </div>
             )
         }
-
         //component de clase
         class App extends React.Component {
             constructor(props) {
                 super(props)
-
                 this.state = {
                    friends: [
                        {
@@ -68,11 +65,25 @@
                    ],
                    input: '',
                 }
-                console.log('THISSSS', this)
                 this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
                 this.updateInput = this.updateInput.bind(this)
                 this.handleAddFriend = this.handleAddFriend.bind(this)
                 this.handleToggleFriend = this.handleToggleFriend.bind(this)
+                
+                console.log('--constructor--')
+            }
+
+            //se inicia solo al inicio de la app
+            componentDidMount() {
+                console.log('--componentDidMount--')
+            }
+            //cuando en el dom hacemos una actualizacion
+            componentDidUpdate() {
+                console.log('--componentDidUpdate--')
+            }
+            // cuando el componente es eliminado del dom
+            componentWillUnmount() {
+                console.log('--componentWillUnmount--')
             }
             handleAddFriend() {
                 this.setState((currentState) => {
@@ -86,7 +97,6 @@
                 })  
                     
             }
-
             handleRemoveFriend (name) {
                 //this.state.friends = this.state.friends.filter((friend) => friend !== name)
                 this.setState((currentState) => {
@@ -108,7 +118,6 @@
                     }
                 })
             }
-
             updateInput(e) {
                 const value = e.target.value
                 //actualiza estado sea cual sea el valor, no importa lo que era antes
@@ -121,8 +130,8 @@
                     input: value
                 }))
             }
-
             render() {
+                console.log('--render--')
                 return (
                     <div>
                         <input 
@@ -149,12 +158,10 @@
                         list={this.state.friends.filter((friend) => friend.active === false)}
                         onToggleFriend={this.handleToggleFriend}
                         />
-                    </div>
-                
+                    </div>       
                 )    
             }
         }
-
         ReactDOM.render(
             <App />,
             document.getElementById('app')
