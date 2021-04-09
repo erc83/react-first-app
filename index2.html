@@ -32,16 +32,22 @@
                 super(props)
 
                 this.state = {
-                   friends: ['Rafael', 'Daniel', 'Elias']
+                   friends: ['Rafael', 'Daniel', 'Elias'],
+                   input: '',
                 }
-
                 console.log('THISSSS', this)
-
                 this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
-
+                this.updateInput = this.updateInput.bind(this)
+                this.handleAddFriend = this.handleAddFriend.bind(this)
             }
-            handleAddFriend () {
-
+            handleAddFriend() {
+                this.setState((currentState) => {
+                    return{
+                        friends: currentState.friends.concat([this.state.input]),
+                        input: '',
+                    }
+                })  
+                    
             }
 
             handleRemoveFriend (name) {
@@ -52,10 +58,29 @@
                     }
                 })
             }
+            updateInput(e) {
+                const value = e.target.value
+                //actualiza estado sea cual sea el valor, no importa lo que era antes
+                /*this.setState({
+                    input:value
+                })*/
+
+                //componente basado en el estado anterior necesita del conjunto funcional
+                this.setState(() => ({
+                    input: value
+                }))
+            }
 
             render() {
                 return (
                     <div>
+                        <input 
+                        type="text"
+                        placeholder='new friend'
+                        value={this.state.input}
+                        onChange={this.updateInput}
+                        />
+                        <button onClick={this.handleAddFriend}>Submit</button>
                         <FriendsList 
                         list={this.state.friends} 
                         onRemoveFriend={this.handleRemoveFriend}
