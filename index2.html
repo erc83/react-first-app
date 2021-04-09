@@ -16,7 +16,15 @@
         function ActiveFriends (props) {
             return (
                 <div>
-                    Active Friends
+                    <h2>Active Friends</h2>
+                    <ul>
+                    {props.list.map((friend) => (
+                        <li key={friend.name}>
+                        <span>{friend.name}</span>
+                        <button>Remove</button>  
+                        </li>
+                    ))}
+                </ul>    
                 </div>
             )
         }
@@ -24,24 +32,19 @@
         function InactiveFriends (props) {
             return(
                 <div>
-                    Inactive Friends
+                    <h2>Inactive Friends</h2>
+                    <ul>
+                    {props.list.map((friend) => (
+                        <li key={friend.name}>
+                        <span>{friend.name}</span>
+                        <button>Remove</button>  
+                        </li>
+                    ))}
+                </ul>    
                 </div>
             )
         }
 
-
-        function FriendsList (props) {
-            return (
-                <ul>
-                {props.list.map((friend) => (
-                    <li key={friend.name}>
-                      <span>{friend.name}</span>
-                      <button onClick={() => props.onRemoveFriend(friend.name)}>Remove</button>  
-                    </li>
-                ))}
-                </ul>
-            )
-        }
         //component de clase
         class App extends React.Component {
             constructor(props) {
@@ -120,8 +123,13 @@
                                 Clear All
                             </button>
                         </div>
-                        <ActiveFriends />
-                        <InactiveFriends />
+                        //listas diferentes basadas en la propiedad activa de cada uno
+                        <ActiveFriends 
+                            list={this.state.friends.filter((friend) => friend.active === true)}
+                        />
+                        <InactiveFriends 
+                        list={this.state.friends.filter((friend) => friend.active === false)}
+                        />
                     </div>
                 
                 )    
