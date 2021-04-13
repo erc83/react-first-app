@@ -65,14 +65,29 @@
             <li key={lang} onClick={() => props.onSelectLanguage(lang)}>
               {lang}
              </li>         
-
           ))}
         </ul>  
-        
       </nav>
-
       )
     }
+
+    function RepoGrid (props) {
+      return (
+        <ul style={{display: 'flex', flexWrap: 'wrap'}}>
+          {props.repos.map(({name, owner, stargazers_count, html_url}) => (
+            <li key={name} style={{margin:30}}>
+              <ul>
+                <li><a href={html_url}>{name}</a></li>
+                <li>@{owner.login}</li>
+                <li>{stargazers_count}</li>
+              </ul>
+              </li>
+          ))}
+        </ul>
+      )
+    }
+
+
 
     class App extends React.Component {
       constructor(props){
@@ -120,8 +135,8 @@
                   <h1 style={{textAlign: 'center'}}>
                     {this.state.activeLanguage}
                   </h1>
-                </div>
-            }
+                  <RepoGrid repos={this.state.repos} />
+                </div>}
           </div>
         )
       }
