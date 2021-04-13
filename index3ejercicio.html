@@ -56,7 +56,7 @@
     }
 //primer cambio
     function Nav (props) {
-      const languages = ['all', 'javascript', 'ruby', 'python', 'Hello eric']
+      const languages = ['all', 'javascript', 'ruby', 'python']
 
       return (
       <nav>
@@ -103,6 +103,12 @@
       }
       componentDidMount() {
         this.fetchRepos(this.state.activeLanguage)
+      }
+
+      componentDidUpdate(prevProps, prevState){
+        if(prevState.activeLanguage !== this.state.activeLanguage) {
+          this.fetchRepos(this.state.activeLanguage)
+        }
       }
 
 
